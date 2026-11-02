@@ -1,0 +1,27 @@
+{
+  "name": "vault-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare-input": "node scripts/build-input.js",
+    "compile": "npm run prepare-input && docker compose run --rm solc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vandanaunipune-del/sepm_project_submission.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/vandanaunipune-del/sepm_project_submission/issues"
+  },
+  "homepage": "https://github.com/vandanaunipune-del/sepm_project_submission#readme",
+  "private": true,
+  "dependencies": {
+    "@openzeppelin/contracts": "5.1.0"
+  }
+}
