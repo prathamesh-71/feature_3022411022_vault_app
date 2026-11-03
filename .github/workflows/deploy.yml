@@ -1,0 +1,54 @@
+﻿name: SEPM Part 2 - Compile and Deploy
+
+on:
+  push:
+    branches:
+      - main
+      - feature_1111_vault_app
+  workflow_dispatch:
+
+jobs:
+  compile:
+    name: Compile Smart Contract
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Compile contracts
+        run: npx hardhat compile
+
+  deploy:
+    name: Deploy to Sepolia
+    if: github.event_name == 'workflow_dispatch'
+    needs: compile
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Deploy contract
+        env:
+          SEPOLIA_RPC_URL: ${{ secrets.SEPOLIA_RPC_URL }}
+          SEPOLIA_PRIVATE_KEY: ${{ secrets.SEPOLIA_PRIVATE_KEY }}
+        run: npx hardhat run scripts/deploy.js --network sepolia
