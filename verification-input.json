@@ -1,0 +1,29 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/HelloWorld.sol": {
+      "content": "\r\n// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.24;\r\n\r\ncontract HelloWorld {\r\n    string private message;\r\n\r\n    constructor() {\r\n        message = \"Hello, SEPM!\";\r\n    }\r\n\r\n    function getMessage() public view returns (string memory) {\r\n        return message;\r\n    }\r\n\r\n    function setMessage(string memory newMessage) public {\r\n        message = newMessage;\r\n    }\r\n}\r\n"
+    }
+  },
+  "settings": {
+    "evmVersion": "paris",
+    "optimizer": {
+      "enabled": false,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    }
+  }
+}
